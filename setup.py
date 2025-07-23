@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="dodo-lookup",
-    version="0.2.7",
+    version="0.2.8",
     description="A minimal and colorful terminal tool to check domain availability across TLDs.",
     long_description=long_description,
     long_description_content_type="text/markdown",
