@@ -57,13 +57,13 @@ dodo
 > example
 🔍 Checking availability for 'example'...
 
-+-------------------+------------+
-|      Domain       |   Status   |
-+-------------------+------------+
-| example.com       | ❌ Taken    |
++-------------------+--------------+
+|      Domain       |   Status     |
++-------------------+--------------+
+| example.com       | ❌ Taken     |
 | example.net       | ✅ Available |
 | example.dev       | ✅ Available |
-+-------------------+------------+
++-------------------+--------------+
 
 > export csv domains.csv
 💾 Results exported to Desktop as 'domains.csv'
