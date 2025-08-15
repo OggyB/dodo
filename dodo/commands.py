@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from dodo.checker import check_all_domains, load_tlds
+from dodo.checker import check_all_domains, load_tlds, _is_specific_domain, check_specific_domain
 from dodo.exporter import export_csv, export_json, print_results
 from pyfiglet import figlet_format
 from termcolor import colored
@@ -39,7 +39,16 @@ def run_dodo_shell():
 
 
 def handle_command(command, args, tlds, last_results):
-    if command in ("quit", "exit"):
+    if command in ["quit",
+                   "exit",
+                   "/q",
+                   "\q",
+                   "exit()",
+                   "quit()"
+                   "/exit",
+                   "/quit",
+                   "/exit()",
+                   "/quit()"]:
         return "exit"
 
     elif command == "help":
@@ -76,6 +85,16 @@ def handle_command(command, args, tlds, last_results):
         except Exception as e:
 
             return f"❌ Failed to export: {str(e)}"
+
+    elif _is_specific_domain(command):
+        print(f"🔍 Checking specific domain '{command}'...\n")
+        result, error = check_specific_domain(command)
+        if result is None:
+            result = f"❌ Error: {error}\n"
+        else:
+            status = "✅ Available" if result else "❌ Taken"
+            result = f"{command}: {status}\n"
+        return result
 
     elif command.isalnum():
         print(f"🔍 Checking availability for '{command}'...\n")
